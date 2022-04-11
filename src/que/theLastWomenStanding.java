@@ -49,12 +49,12 @@ public class theLastWomenStanding {
      *
      */
 
-    // public static void main(String[] args) {
-    //     theLastWomenStanding theLastWomenStanding = new theLastWomenStanding();
-    //
-    //     Queue peopleInTheCircle = theLastWomenStanding.giveNumberToPeople(3);
-    //     theLastWomenStanding.callOutPeople(peopleInTheCircle);
-    // }
+    public static void main(String[] args) {
+        theLastWomenStanding theLastWomenStanding = new theLastWomenStanding();
+
+        Queue peopleInTheCircle = theLastWomenStanding.giveNumberToPeople(3);
+        theLastWomenStanding.callOutPeople(peopleInTheCircle);
+    }
 
     /**
      * 1. 사람의 수 만큼 Que에 값을 집어 넣는다.
