@@ -62,10 +62,10 @@ public class theLastWomenStanding {
      * 3.
      *
      */
-    public Queue giveNumberToPeople (int peopleCount) {
+    public Queue giveNumberToPeople(int peopleCount) {
         Queue peopleInTheCircle = new LinkedList();
 
-        for(int i = 1 ; i <= peopleCount ; i ++) {
+        for (int i = 1; i <= peopleCount; i++) {
             peopleInTheCircle.add(i);
         }
 
@@ -73,54 +73,34 @@ public class theLastWomenStanding {
 
     }
 
-    public void callOutPeople (Queue peopleInTheCircle) {
+    public void callOutPeople(Queue peopleInTheCircle) {
 
         int numberCount = 1;
 
-        while(!peopleInTheCircle.isEmpty()){
-            System.out.println("-----사람이 여전히 존재함 세제곱 연산 시작-----");
-            int callNumber = (int)Math.pow(numberCount,3);
+        while (!peopleInTheCircle.isEmpty()) {
 
-            System.out.println("세 제곱 연산 : " + callNumber);
+            int callNumber = (int)Math.pow(numberCount, 3);
 
-            System.out.println("-----사람이 여전히 존재함 세제곱 연산 종료-----");
+            if (callNumber == 1) {
 
-            if(callNumber == 1) {
-                System.out.println("-----첫번째 1 제거  시작-----");
                 peopleInTheCircle.poll();
-                System.out.println("현재 제일 위에 있는 사람" + peopleInTheCircle.peek());
-                System.out.println("-----첫번째 1 제거  종료-----");
 
             } else {
-                System.out.println("-----첫번째 1 제거 후 남은 사람 체크  시작-----");
+
                 int leftPeople = peopleInTheCircle.size();
-                System.out.println("남은 사람 수: " + leftPeople);
-                System.out.println("현재 제일 위에 있는 사람" + peopleInTheCircle.peek());
-                System.out.println("-----첫번째 1 제거 후 남은 사람 체크  종료-----");
 
-                if(leftPeople > 1) {
-                    System.out.println("-----첫번째 1 제거 후 나머지 계산  시작-----");
-                    int removeThisPerson = leftPeople % callNumber ; //5 %8
-                    System.out.println("지금 부르는 사람: " + callNumber);
-                    System.out.println("지워야 하는 사람의 순번 : " + removeThisPerson);
-                    System.out.println("현재 제일 위에 있는 사람" + peopleInTheCircle.peek());
-                    System.out.println("-----첫번째 1 제거 후 나머지 계산  종료-----");
-                    if (removeThisPerson > 0 ){
-                        System.out.println("-----지워야하는 사람 제거 시작-----");
+                if (leftPeople > 1) {
 
+                    int removeThisPerson = leftPeople % callNumber; //5 %8
 
+                    if (removeThisPerson > 0) {
 
-                        peopleInTheCircle.remove(removeThisPerson - 1 );
-                        System.out.println("현재 제일 위에 있는 사람" + peopleInTheCircle.peek());
-                        System.out.println("-----지워야하는 사람 제거 종료-----");
+                        peopleInTheCircle.remove(removeThisPerson - 1);
                     }
-                    System.out.println("지금 남은 사람: " + peopleInTheCircle.peek());
+
                 } else {
-                    System.out.println("-----최후의 1인 작업 시작----");
-                    System.out.println("최종적으로 남은 사람 수: " + leftPeople);
-                    System.out.println("현재 제일 위에 있는 사람" + peopleInTheCircle.peek());
                     System.out.println(peopleInTheCircle.poll());
-                    System.out.println("-----최후의 1인 작업 종료----");
+
                 }
 
             }
@@ -129,9 +109,5 @@ public class theLastWomenStanding {
         }
 
     }
-
-
-
-
 
 }
