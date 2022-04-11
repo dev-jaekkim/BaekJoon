@@ -95,7 +95,19 @@ public class theLastWomenStanding {
 
                     if (removeThisPerson > 0) {
 
-                        peopleInTheCircle.remove(removeThisPerson - 1);
+                        for (int i = 0; i < removeThisPerson; i++) {
+                            //제
+
+                            if (!(removeThisPerson == 1 && i == 0)) {
+
+                                int leftPerson = (int)peopleInTheCircle.peek();
+                                peopleInTheCircle.add(leftPerson);
+                            }
+
+                            //제거
+                            peopleInTheCircle.poll();
+                        }
+
                     }
 
                 } else {
