@@ -4,46 +4,76 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import que.theLastWomenStanding;
-
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        Integer numberOfPeople = Integer.valueOf(bufferedReader.readLine());
-
-        theLastWomenStanding theLastWomenStanding = new theLastWomenStanding();
-
-        Queue peopleInTheCircle = theLastWomenStanding.giveNumberToPeople(numberOfPeople);
-        theLastWomenStanding.callOutPeople(peopleInTheCircle);
+        Integer calledOutNumber = Integer.valueOf(bufferedReader.readLine());
+        Queue peopleInTheCircle = giveNumberToPeople(calledOutNumber);
+        callOutPeople(peopleInTheCircle);
 
         bufferedReader.close();
 
     }
 
+    public static Queue giveNumberToPeople(int peopleCount) {
+        Queue peopleInTheCircle = new LinkedList();
 
+        for (int i = 1; i <= peopleCount; i++) {
+            peopleInTheCircle.add(i);
+        }
 
-    public static void firstThrowNextEndOfLine(int lengthOfQue) {
-        Queue cardDeck = new LinkedList();
+        return peopleInTheCircle;
 
-        for (int i = 1; i <= lengthOfQue; i++)
-            cardDeck.add(i);
+    }
 
+    public static void callOutPeople(Queue peopleInTheCircle) {
 
-        while (!cardDeck.isEmpty()) {
-            //제일 위에 있는 카드는 버릔다.
-            int thrownCard = (int)cardDeck.poll();
+        int numberCount = 1;
 
-            System.out.print(thrownCard + " ");
+        while (!peopleInTheCircle.isEmpty()) {
 
-            if(cardDeck.isEmpty()) {
-                break;
+            int callNumber = (int)Math.pow(numberCount, 3);
+
+            if (callNumber == 1) {
+
+                peopleInTheCircle.poll();
+            } else {
+
+                int leftPeople = peopleInTheCircle.size();
+
+                if (leftPeople > 1) {
+
+                    int removeThisPerson = callNumber % leftPeople; //5 %8
+
+                    if (removeThisPerson == 0) {
+                        peopleInTheCircle.poll();
+                    }
+
+                    if (removeThisPerson > 0) {
+
+                        for (int i = 0; i < removeThisPerson - 1; i++) {
+                            //제거
+                            int endOfLinePerson = (int)peopleInTheCircle.poll();
+                            peopleInTheCircle.add(endOfLinePerson);
+
+                        }
+
+                        peopleInTheCircle.poll();
+
+                    }
+
+                } else {
+                    System.out.println(peopleInTheCircle.poll());
+
+                }
+
             }
 
-            //다음 카드는 제일 밑으로 넣는다.
-            int endOfLineCard = (int)cardDeck.poll();
-            cardDeck.add(endOfLineCard);
+            numberCount++;
         }
+
     }
+
 }

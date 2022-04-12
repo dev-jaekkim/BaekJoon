@@ -52,7 +52,7 @@ public class theLastWomenStanding {
     public static void main(String[] args) {
         theLastWomenStanding theLastWomenStanding = new theLastWomenStanding();
 
-        Queue peopleInTheCircle = theLastWomenStanding.giveNumberToPeople(3);
+        Queue peopleInTheCircle = theLastWomenStanding.giveNumberToPeople(5000);
         theLastWomenStanding.callOutPeople(peopleInTheCircle);
     }
 
@@ -83,7 +83,8 @@ public class theLastWomenStanding {
 
             if (callNumber == 1) {
 
-                peopleInTheCircle.poll();
+                int firstRemovedPerson = (int)peopleInTheCircle.poll();
+                System.out.println("firstRemovedPerson:  " + firstRemovedPerson);
 
             } else {
 
@@ -91,22 +92,27 @@ public class theLastWomenStanding {
 
                 if (leftPeople > 1) {
 
-                    int removeThisPerson = leftPeople % callNumber; //5 %8
+                    int removeThisPerson = callNumber % leftPeople ; //5 %8
+                    System.out.println("leftPeople: " + leftPeople + " callNumber: " + callNumber);
+                    System.out.println("removeThisPerson : "+ removeThisPerson);
+
+                    if (removeThisPerson == 0 ) {
+                        int removedPersonWhenModeIsZero = (int)peopleInTheCircle.poll();
+                        System.out.println("removedPersonWhenModeIsZero:  " + removedPersonWhenModeIsZero);
+
+                    }
 
                     if (removeThisPerson > 0) {
 
-                        for (int i = 0; i < removeThisPerson; i++) {
-                            //제
-
-                            if (!(removeThisPerson == 1 && i == 0)) {
-
-                                int leftPerson = (int)peopleInTheCircle.peek();
-                                peopleInTheCircle.add(leftPerson);
-                            }
-
+                        for (int i = 0; i < removeThisPerson - 1; i++) {
                             //제거
-                            peopleInTheCircle.poll();
+                            int endOfLinePerson = (int)peopleInTheCircle.poll();
+                            peopleInTheCircle.add(endOfLinePerson);
+                            System.out.println("endOfLinePerson:  " + endOfLinePerson);
                         }
+
+                        int removedPersonWhenModIsMoreThanZero = (int)peopleInTheCircle.poll();
+                        System.out.println("removedPersonWhenModIsMoreThanZero:  " + removedPersonWhenModIsMoreThanZero);
 
                     }
 
