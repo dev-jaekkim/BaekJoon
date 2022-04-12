@@ -82,9 +82,9 @@ public class theLastWomenStanding {
             int callNumber = (int)Math.pow(numberCount, 3);
 
             if (callNumber == 1) {
-
-                int firstRemovedPerson = (int)peopleInTheCircle.poll();
-                System.out.println("firstRemovedPerson:  " + firstRemovedPerson);
+                peopleInTheCircle.poll();
+                // int firstRemovedPerson = (int)peopleInTheCircle.poll();
+                // System.out.println("firstRemovedPerson:  " + firstRemovedPerson);
 
             } else {
 
@@ -93,14 +93,8 @@ public class theLastWomenStanding {
                 if (leftPeople > 1) {
 
                     int removeThisPerson = callNumber % leftPeople ; //5 %8
-                    System.out.println("leftPeople: " + leftPeople + " callNumber: " + callNumber);
-                    System.out.println("removeThisPerson : "+ removeThisPerson);
-
-                    if (removeThisPerson == 0 ) {
-                        int removedPersonWhenModeIsZero = (int)peopleInTheCircle.poll();
-                        System.out.println("removedPersonWhenModeIsZero:  " + removedPersonWhenModeIsZero);
-
-                    }
+                    // System.out.println("leftPeople: " + leftPeople + " callNumber: " + callNumber);
+                    // System.out.println("removeThisPerson : "+ removeThisPerson);
 
                     if (removeThisPerson > 0) {
 
@@ -108,13 +102,12 @@ public class theLastWomenStanding {
                             //제거
                             int endOfLinePerson = (int)peopleInTheCircle.poll();
                             peopleInTheCircle.add(endOfLinePerson);
-                            System.out.println("endOfLinePerson:  " + endOfLinePerson);
+                            // System.out.println("endOfLinePerson:  " + endOfLinePerson);
                         }
 
-                        int removedPersonWhenModIsMoreThanZero = (int)peopleInTheCircle.poll();
-                        System.out.println("removedPersonWhenModIsMoreThanZero:  " + removedPersonWhenModIsMoreThanZero);
-
                     }
+
+                    peopleInTheCircle.poll();
 
                 } else {
                     System.out.println(peopleInTheCircle.poll());

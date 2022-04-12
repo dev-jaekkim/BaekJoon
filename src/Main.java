@@ -34,7 +34,7 @@ public class Main {
 
         while (!peopleInTheCircle.isEmpty()) {
 
-            int callNumber = (int)Math.pow(numberCount, 3);
+            int callNumber = numberCount * numberCount * numberCount;
 
             if (callNumber == 1) {
 
@@ -45,24 +45,23 @@ public class Main {
 
                 if (leftPeople > 1) {
 
-                    int removeThisPerson = callNumber % leftPeople; //5 %8
+                    long removeThisPerson = callNumber % leftPeople;
 
-                    if (removeThisPerson == 0) {
-                        peopleInTheCircle.poll();
+                    if(removeThisPerson == 0 ) {
+                        removeThisPerson = leftPeople;
                     }
 
                     if (removeThisPerson > 0) {
 
-                        for (int i = 0; i < removeThisPerson - 1; i++) {
-                            //제거
+                        for (long i = 0; i < removeThisPerson ; i++) {
                             int endOfLinePerson = (int)peopleInTheCircle.poll();
                             peopleInTheCircle.add(endOfLinePerson);
 
                         }
 
-                        peopleInTheCircle.poll();
-
                     }
+
+                    peopleInTheCircle.poll();
 
                 } else {
                     System.out.println(peopleInTheCircle.poll());
