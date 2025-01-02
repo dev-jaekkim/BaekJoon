@@ -1,4 +1,4 @@
-package que;
+package Legacy.que;
 
 import java.util.LinkedList;
 import java.util.Queue;

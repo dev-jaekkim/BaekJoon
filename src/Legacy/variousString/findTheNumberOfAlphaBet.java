@@ -1,4 +1,4 @@
-package bronze.variousString;
+package Legacy.variousString;
 
 public class findTheNumberOfAlphaBet {
     public static void main(String[] args) {

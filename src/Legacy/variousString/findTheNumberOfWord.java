@@ -1,4 +1,4 @@
-package bronze.variousString;
+package Legacy.variousString;
 
 public class findTheNumberOfWord {
     /**
