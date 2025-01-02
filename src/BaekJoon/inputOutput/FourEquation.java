@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 백준 10869
+ */
 public class FourEquation {
 
     public void doingFourEquationWithNumbers() throws IOException {

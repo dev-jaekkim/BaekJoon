@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 백준 10998
+ */
 public class Multiple {
 
     public void multiplyNumbers () throws IOException {
