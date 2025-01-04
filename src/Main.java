@@ -7,25 +7,25 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
         String str = bf.readLine();
+        String str2 = bf.readLine();
+        bf.close();
+
         StringTokenizer st = new StringTokenizer(str, " ");
 
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
+        int currentHour = Integer.parseInt(st.nextToken());
+        int currentMinute = Integer.parseInt(st.nextToken());
+        int cookingMinute = Integer.parseInt(str2);
 
-        if ( a > b ) {
-            System.out.println(">");
-        }
+        int x = currentMinute + cookingMinute;
 
-        if (a < b ) {
-            System.out.println("<");
-        }
+        int addedHour = x / 60;
+        int leftMinute = x % 60;
 
-        if (a == b) {
-            System.out.println("==");
-        }
+        int finalHour = (currentHour + addedHour) % 24;
 
-        bf.close();
+        System.out.println(finalHour + " " + leftMinute);
     }
 
 }
