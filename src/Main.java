@@ -8,24 +8,31 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
-        String str = bf.readLine();
-        String str2 = bf.readLine();
+        String totalPriceString = bf.readLine();
+        int totalPrice = Integer.parseInt(totalPriceString);
+
+        String boughtCountString = bf.readLine();
+        int boughtCount = Integer.parseInt(boughtCountString);
+
+        int calculatedTotalPrice = 0;
+
+        for (int i = 0; i < boughtCount; i++) {
+            String priceAndCountString = bf.readLine();
+            StringTokenizer st = new StringTokenizer(priceAndCountString, " ");
+            int price = Integer.parseInt(st.nextToken());
+            int count = Integer.parseInt(st.nextToken());
+            calculatedTotalPrice += price * count;
+        }
+
         bf.close();
 
-        StringTokenizer st = new StringTokenizer(str, " ");
+        String result = "Yes";
 
-        int currentHour = Integer.parseInt(st.nextToken());
-        int currentMinute = Integer.parseInt(st.nextToken());
-        int cookingMinute = Integer.parseInt(str2);
+        if (totalPrice != calculatedTotalPrice) {
+            result = "No";
+        }
 
-        int x = currentMinute + cookingMinute;
-
-        int addedHour = x / 60;
-        int leftMinute = x % 60;
-
-        int finalHour = (currentHour + addedHour) % 24;
-
-        System.out.println(finalHour + " " + leftMinute);
+        System.out.println(result);
     }
 
 }
