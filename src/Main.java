@@ -7,26 +7,34 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int totalArrayCount = Integer.parseInt(bf.readLine());
+        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+        int arraySize = Integer.parseInt(st.nextToken());
+        int totalInput = Integer.parseInt(st.nextToken());
 
-        int[] totalArray = new int[totalArrayCount];
+        int[] baskets = new int[arraySize];
 
-        String arrayString = bf.readLine();
-        StringTokenizer st = new StringTokenizer(arrayString, " ");
-
-        String foundString = bf.readLine();
-        int numberToFind = Integer.parseInt(foundString);
-        int findCount = 0;
-
-        for(int i = 0 ; i < totalArrayCount ; i++) {
-            totalArray[i] = Integer.parseInt(st.nextToken());
-            if(totalArray[i] == numberToFind){
-                findCount += 1;
-            }
+        for(int i = 1 ; i <= arraySize; i++) {
+            baskets[i-1] = i;
         }
 
-        System.out.println(findCount);
-        bf.close();
-    }
+        for(int i = 0 ; i < totalInput ; i++) {
+            StringTokenizer st2 = new StringTokenizer(bf.readLine(), " ");
+            int switchFirst = Integer.parseInt(st2.nextToken()) - 1;
+            int switchLast = Integer.parseInt(st2.nextToken()) - 1;
 
+            int temp = baskets[switchFirst];
+            baskets[switchFirst] = baskets[switchLast];
+            baskets[switchLast] = temp;
+        }
+
+        bf.close();
+
+        StringBuilder sb = new StringBuilder();
+        for(int j = 0 ; j < arraySize; j++) {
+            sb.append(baskets[j]);
+            sb.append(" ");
+        }
+
+        System.out.println(sb);
+    }
 }
