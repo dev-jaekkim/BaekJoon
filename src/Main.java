@@ -8,30 +8,46 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-        int arraySize = Integer.parseInt(st.nextToken());
+        int totalBaskets = Integer.parseInt(st.nextToken());
         int totalInput = Integer.parseInt(st.nextToken());
 
-        int[] baskets = new int[arraySize];
+        int[] baskets = new int[totalBaskets];
 
-        for(int i = 1 ; i <= arraySize; i++) {
-            baskets[i-1] = i;
+        for (int i = 0; i < totalBaskets; i++) {
+            baskets[i] = i + 1;
         }
 
-        for(int i = 0 ; i < totalInput ; i++) {
-            StringTokenizer st2 = new StringTokenizer(bf.readLine(), " ");
-            int switchFirst = Integer.parseInt(st2.nextToken()) - 1;
-            int switchLast = Integer.parseInt(st2.nextToken()) - 1;
+        for (int i = 0; i < totalInput; i++) {
+            StringTokenizer st2 = new StringTokenizer(bf.readLine());
+            int firstBasket = Integer.parseInt(st2.nextToken());
+            int lastBasket = Integer.parseInt(st2.nextToken());
 
-            int temp = baskets[switchFirst];
-            baskets[switchFirst] = baskets[switchLast];
-            baskets[switchLast] = temp;
+            int temp1 = baskets[firstBasket - 1];
+            baskets[firstBasket - 1] = baskets[lastBasket - 1];
+            baskets[lastBasket - 1] = temp1;
+            int remainingCount = lastBasket - firstBasket - 1;
+
+            if (remainingCount > 0) {
+                remainingCount = remainingCount / 2;
+                firstBasket += 1;
+                lastBasket -= 1;
+
+                for (int j = 0; j < remainingCount; j++) {
+                    int temp = baskets[firstBasket - 1];
+                    baskets[firstBasket - 1] = baskets[lastBasket - 1];
+                    baskets[lastBasket - 1] = temp;
+                    firstBasket += 1;
+                    lastBasket -= 1;
+                }
+
+            }
         }
 
         bf.close();
-
         StringBuilder sb = new StringBuilder();
-        for(int j = 0 ; j < arraySize; j++) {
-            sb.append(baskets[j]);
+
+        for (int i = 0; i < totalBaskets; i++) {
+            sb.append(baskets[i]);
             sb.append(" ");
         }
 
