@@ -1,35 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
-        int totalSubjectCount = Integer.parseInt(bf.readLine());
+        String word = bf.readLine();
+        int whichLetterToFind = Integer.parseInt(bf.readLine());
+//
+//        int startNumber = 0;
+//        int endNumber = whichLetterToFind;
+//        if(whichLetterToFind - 1 < 1) {
+//            startNumber = 0 ;
+//        } else {
+//            startNumber = whichLetterToFind - 1 ;
+//        }
+//        String whichLetter = word.substring(startNumber , endNumber);
+//        System.out.println(whichLetter);
 
-        double[] subjectScores = new double[totalSubjectCount];
-
-        StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-
-        double topScore = 0;
-
-        for(int i = 0 ; i < totalSubjectCount ; i++) {
-            subjectScores[i] = Integer.parseInt(st.nextToken());
-            if(subjectScores[i] > topScore) {
-                topScore = subjectScores[i];
-            }
-        }
-
-        double totalSum = 0;
-        for (int i = 0 ; i < totalSubjectCount ; i++) {
-            totalSum += subjectScores[i]/topScore*100;
-        }
-
-        double finalValue = totalSum / totalSubjectCount;
-
-        System.out.println(finalValue);
+        bf.close();
+        System.out.println(word.charAt(whichLetterToFind - 1));
     }
 }
