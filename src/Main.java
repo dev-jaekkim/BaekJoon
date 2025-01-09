@@ -6,21 +6,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int totalCase = Integer.parseInt(bf.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        String word = bf.readLine();
-        int whichLetterToFind = Integer.parseInt(bf.readLine());
-//
-//        int startNumber = 0;
-//        int endNumber = whichLetterToFind;
-//        if(whichLetterToFind - 1 < 1) {
-//            startNumber = 0 ;
-//        } else {
-//            startNumber = whichLetterToFind - 1 ;
-//        }
-//        String whichLetter = word.substring(startNumber , endNumber);
-//        System.out.println(whichLetter);
+        for(int i = 0 ; i< totalCase ; i++) {
+            String nextWord = bf.readLine();
+            sb.append(nextWord.charAt(0));
+            sb.append(nextWord.charAt(nextWord.length() - 1));
+            sb.append(System.lineSeparator());
+        }
 
         bf.close();
-        System.out.println(word.charAt(whichLetterToFind - 1));
+        System.out.println(sb);
     }
 }
