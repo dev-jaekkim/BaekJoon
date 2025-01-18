@@ -33,9 +33,6 @@ public class PrintingStars {
                 for (int k = 0; k < firstStar; k++) {
                     sb.append("*");
                 }
-                for (int j = 0; j < totalBlank; j++) {
-                    sb.append(" ");
-                }
 
                 totalBlank -= 1;
                 firstStar += 2;
@@ -48,8 +45,7 @@ public class PrintingStars {
                 }
             }
 
-            if (!goingDownWards) {
-
+            if (!goingDownWards && firstStar > 1) {
                 totalBlank += 1;
                 firstStar -= 2;
 
@@ -59,15 +55,11 @@ public class PrintingStars {
                 for (int k = 0; k < firstStar; k++) {
                     sb.append("*");
                 }
-                for (int j = 0; j < totalBlank; j++) {
-                    sb.append(" ");
+
+                if(firstStar > 1){
+                    sb.append(System.lineSeparator());
                 }
 
-                sb.append(System.lineSeparator());
-
-                if (firstStar > totalLine) {
-                    goingDownWards = true;
-                }
             }
         }
         System.out.print(sb);
