@@ -7,23 +7,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int targetNumber = Integer.parseInt(bf.readLine());
-        bf.close();
-        int result = 0;
-
-        for (int i = 1; i <= targetNumber; i++) {
-            int sum = 0;
-            int tempNum = i;
-            while (tempNum != 0) {
-                sum += tempNum % 10;
-                tempNum /= 10;
+        int count = 1;
+        int range = 2;
+        if (targetNumber == 1) {
+            System.out.println("1");
+        } else {
+            while (range <= targetNumber) {
+                range = range + (6*count);
+                count++;
             }
-
-            if (sum + i == targetNumber) {
-                result = i;
-                break;
-            }
+            System.out.println(count);
         }
-
-        System.out.println(result);
     }
 }
