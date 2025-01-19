@@ -1,32 +1,39 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int totalPaper = Integer.parseInt(bf.readLine());
 
-        char[][] totalMatrix = new char[15][15];
-        StringBuilder sb = new StringBuilder();
+        boolean[][] totalArea = new boolean[101][101];
+        int totalAreaCount = 0;
 
-        for (int i = 0; i < 5; i++) {
-            String firstLine = bf.readLine();
+        for(int i = 0 ; i < totalPaper ; i++) {
+            String coordination = bf.readLine();
+            StringTokenizer st = new StringTokenizer(coordination, " ");
 
-            for (int j = 0; j < firstLine.length(); j++) {
-                totalMatrix[i][j] = firstLine.charAt(j);
-            }
-        }
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (totalMatrix[j][i] != 0) {
-                    sb.append(totalMatrix[j][i]);
+            for(int j = x; j < 10+x; j++) {
+                for(int k = y ; k < 10+y; k++) {
+                    totalArea[j][k] = true;
                 }
             }
         }
 
-        System.out.println(sb);
-        bf.close();
+        for(int i = 0; i < 101 ; i++) {
+            for(int j = 0 ; j < 101; j++) {
+                if(totalArea[i][j]) {
+                    totalAreaCount +=1;
+                }
+            }
+        }
+
+        System.out.println(totalAreaCount);
     }
 }
