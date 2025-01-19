@@ -38,4 +38,33 @@ public class PrimeNumbers {
 
         System.out.println(resultCount);
     }
+
+    public void useSquare() throws Exception {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int totalNumCount = Integer.parseInt(bf.readLine());
+        String numberLine = bf.readLine();
+        bf.close();
+        int primeNumResult = 0;
+
+        StringTokenizer st = new StringTokenizer(numberLine, " ");
+
+
+        for (int i = 0; i < totalNumCount; i++) {
+            int areYouPrime = Integer.parseInt(st.nextToken());
+            boolean primeCheck = false;
+
+            for(int j = 2 ; j < Math.sqrt(areYouPrime); i++) {
+                if(areYouPrime%j ==0) {
+                    primeCheck = true;
+                    break;
+                }
+            }
+
+            if(!primeCheck) {
+               primeNumResult += 1;
+            }
+        }
+
+        System.out.println(primeNumResult);
+    }
 }

@@ -7,28 +7,33 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int inputNumCount = Integer.parseInt(bf.readLine());
-        int resultCount = 0;
+        int totalNumCount = Integer.parseInt(bf.readLine());
+        int primeNumResult = 0;
 
-        String numList = bf.readLine();
+        String numberLine = bf.readLine();
         bf.close();
-        StringTokenizer st = new StringTokenizer(numList, " ");
+        StringTokenizer st = new StringTokenizer(numberLine, " ");
 
-        for (int i = 0; i < inputNumCount; i++) {
+        for (int i = 0; i < totalNumCount; i++) {
             int areYouPrime = Integer.parseInt(st.nextToken());
             boolean primeCheck = true;
-            for (int j = 2; j < areYouPrime; j++) {
-                if (areYouPrime % j == 0) {
+            if(areYouPrime==1){
+                continue;
+            }
+
+            for(int j = 2 ; j <= Math.sqrt(areYouPrime); j++) {
+
+                if(areYouPrime%j ==0) {
                     primeCheck = false;
                     break;
                 }
             }
 
-            if (primeCheck && areYouPrime != 1) {
-                resultCount += 1;
+            if(primeCheck) {
+                primeNumResult += 1;
             }
         }
 
-        System.out.println(resultCount);
+        System.out.println(primeNumResult);
     }
 }
