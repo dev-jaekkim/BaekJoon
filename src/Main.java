@@ -7,33 +7,27 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int totalPaper = Integer.parseInt(bf.readLine());
 
-        boolean[][] totalArea = new boolean[101][101];
-        int totalAreaCount = 0;
+        String input = bf.readLine();
+        bf.close();
+        StringTokenizer st = new StringTokenizer(input, " ");
+        String number = st.nextToken();
+        int formationNum = Integer.parseInt(st.nextToken());
+        int finalValue = 0;
+        int temp = 1;
 
-        for(int i = 0 ; i < totalPaper ; i++) {
-            String coordination = bf.readLine();
-            StringTokenizer st = new StringTokenizer(coordination, " ");
+        for (int i = number.length() - 1; i >= 0; i--) {
+            char c = number.charAt(i);
 
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-
-            for(int j = x; j < 10+x; j++) {
-                for(int k = y ; k < 10+y; k++) {
-                    totalArea[j][k] = true;
-                }
+            if (c >= 'A' && c <= 'Z') {
+                finalValue += (c-55) * temp;
+            } else {
+                finalValue += (c-48) * temp;
             }
+
+            temp *= formationNum;
         }
 
-        for(int i = 0; i < 101 ; i++) {
-            for(int j = 0 ; j < 101; j++) {
-                if(totalArea[i][j]) {
-                    totalAreaCount +=1;
-                }
-            }
-        }
-
-        System.out.println(totalAreaCount);
+        System.out.print(finalValue);
     }
 }
