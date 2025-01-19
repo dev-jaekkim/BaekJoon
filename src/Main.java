@@ -1,41 +1,49 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
-        String input = bf.readLine();
-        bf.close();
-
-        StringTokenizer st = new StringTokenizer(input, " ");
-
-        int NumberToSolve = Integer.parseInt(st.nextToken());
-        int formation = Integer.parseInt(st.nextToken());
-
+        int totalChange = Integer.parseInt(bf.readLine());
         StringBuilder sb = new StringBuilder();
 
-        while(NumberToSolve >= formation) {
 
-            char c = 'a';
+        for (int i = 0; i < totalChange; i++) {
+            int nextChange = Integer.parseInt(bf.readLine());
 
-            if(NumberToSolve % formation >= 10 ) {
-                c = (char) ((NumberToSolve % formation) + 55);
+            if(nextChange >= 25) {
+                sb.append(nextChange/25);
+                sb.append(" ");
+                nextChange = nextChange%25;
             } else {
-                c = (char) ((NumberToSolve % formation) + 48);
+                sb.append(0);
+                sb.append(" ");
             }
 
-            NumberToSolve = NumberToSolve / formation;
-            sb.insert(0, c);
-        }
+            if(nextChange >= 10) {
+                sb.append(nextChange/10);
+                sb.append(" ");
+                nextChange = nextChange%10;
+            } else {
+                sb.append(0);
+                sb.append(" ");
+            }
 
-        if(NumberToSolve >= 10 ) {
-            sb.insert(0,(char) ((NumberToSolve + 55)));
-        } else {
-            sb.insert(0,(char) ((NumberToSolve + 48)));
+            if(nextChange >= 5) {
+                sb.append(nextChange/5);
+                sb.append(" ");
+                nextChange = nextChange%5;
+            } else {
+                sb.append(0);
+                sb.append(" ");
+            }
+
+            sb.append(nextChange);
+            sb.append(System.lineSeparator());
+
         }
 
         System.out.println(sb);
