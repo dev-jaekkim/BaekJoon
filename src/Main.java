@@ -1,41 +1,44 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-
+        int attendants = Integer.parseInt(bf.readLine());
         StringBuilder sb = new StringBuilder();
 
-        while (true) {
-            String input = bf.readLine();
-            StringTokenizer st = new StringTokenizer(input, " ");
-            int ausar = Integer.parseInt(st.nextToken());
-            int auset = Integer.parseInt(st.nextToken());
-            int heru = Integer.parseInt(st.nextToken());
+        String sizeOfTshirtInput = bf.readLine();
+        StringTokenizer st = new StringTokenizer(sizeOfTshirtInput, " ");
+        int shirtResultCount = 0;
 
-            if (ausar == 0 && auset == 0 && heru == 0) {
-                break;
+
+        String tshirtBundlePenBundle = bf.readLine();
+        StringTokenizer st2 = new StringTokenizer(tshirtBundlePenBundle, " ");
+        bf.close();
+        int penResult = 0;
+        int unitPenResult = 0;
+
+        int tshirtBundle = Integer.parseInt(st2.nextToken());
+        int penBundle = Integer.parseInt(st2.nextToken());
+
+        for(int i = 0 ; i < 6; i++) {
+            int sizeCount = Integer.parseInt(st.nextToken());
+            shirtResultCount += sizeCount/tshirtBundle;
+            if(sizeCount%tshirtBundle != 0) {
+                shirtResultCount += 1;
             }
 
-            int[] lines = new int[3];
-            lines[0]= ausar;
-            lines[1] = auset;
-            lines[2] = heru;
-
-            Arrays.sort(lines);
-
-            if (lines[2] * lines[2] == lines[0] * lines[0] + lines[1] * lines[1]) {
-                sb.append("right");
-            } else {
-                sb.append("wrong");
-            }
-            sb.append(System.lineSeparator());
         }
+        sb.append(shirtResultCount);
+        sb.append(System.lineSeparator());
+        penResult = attendants / penBundle;
+        unitPenResult = attendants % penBundle;
+        sb.append(penResult);
+        sb.append(" ");
+        sb.append(unitPenResult);
 
         System.out.println(sb);
     }
