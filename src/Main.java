@@ -7,19 +7,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        String inputLine = bf.readLine();
-        StringTokenizer st = new StringTokenizer(inputLine , " ");
+        String input = bf.readLine();
         bf.close();
-        int up = Integer.parseInt(st.nextToken());
-        int down = Integer.parseInt(st.nextToken());
-        int goal = Integer.parseInt(st.nextToken());
 
-        int day = (goal - down) / (up - down);
+        StringTokenizer st = new StringTokenizer(input, " ");
 
-        if((goal - down) % (up - down) != 0) {
-            day++;
-        }
+        double result = Math.pow(Double.parseDouble(st.nextToken()), 2)
+                + Math.pow(Double.parseDouble(st.nextToken()), 2)
+                + Math.pow(Double.parseDouble(st.nextToken()), 2)
+                + Math.pow(Double.parseDouble(st.nextToken()), 2)
+                + Math.pow(Double.parseDouble(st.nextToken()), 2);
 
-        System.out.println(day);
+        System.out.printf("%d",(int)result%10);
     }
 }
