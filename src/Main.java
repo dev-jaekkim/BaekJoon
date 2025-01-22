@@ -6,16 +6,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int a = Integer.parseInt(bf.readLine());
-        int b = Integer.parseInt(bf.readLine());
-        int c = Integer.parseInt(bf.readLine());
+        String resultValue = Integer.toString(Integer.parseInt(bf.readLine())*Integer.parseInt(bf.readLine())*Integer.parseInt(bf.readLine()));
+        bf.close();
 
-        System.out.println((a+b-c));
-        StringBuilder sb = new StringBuilder();
-        sb.append(a);
-        sb.append(b);
+        int [] valueCount = new int[10];
 
-        int ab = Integer.parseInt(sb.toString());
-        System.out.println(ab - c);
+        for(int i = 0 ; i < resultValue.length(); i++) {
+            int c = resultValue.charAt(i) - '0';
+            valueCount[c] += 1;
+        }
+
+        for (int i = 0 ; i < 10 ; i++) {
+            System.out.println(valueCount[i]);
+        }
     }
 }
