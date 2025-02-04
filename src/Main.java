@@ -1,27 +1,45 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int totalInput = Integer.parseInt(bf.readLine());
-        StringBuilder sb = new StringBuilder();
+        String firstSentence = bf.readLine();
+        String secondSentence = bf.readLine();
+        String thirdSentence = bf.readLine();
+        bf.close();
+        int outPutNumber = 0;
 
-        for (int i = 0; i < totalInput; i++) {
-            StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
-            int height = Integer.parseInt(st.nextToken());
-            int width = Integer.parseInt(st.nextToken());
-            int visitor = Integer.parseInt(st.nextToken());
-
-            int floor = visitor % height == 0 ? height : visitor % height;
-            int roomNumber = visitor % height == 0 ? visitor / height : visitor / height + 1;
-            sb.append(floor).append(String.format("%02d", roomNumber)).append(System.lineSeparator());
+        if(isItStringOrNumber(firstSentence, outPutNumber, 3)){
+            if(isItStringOrNumber(secondSentence, outPutNumber, 2)) {
+                isItStringOrNumber(thirdSentence, outPutNumber, 1);
+            }
         }
 
-        System.out.println(sb);
+    }
 
+    public static boolean isItStringOrNumber(String sentence, int outPutNumber, int addNumber) {
+        if (isItString(sentence)) {
+            return true;
+        } else {
+            outPutNumber = Integer.parseInt(sentence) + addNumber;
+            if (outPutNumber % 15 == 0) {
+                System.out.println("FizzBuzz");
+            } else if (outPutNumber % 5 == 0) {
+                System.out.println("Buzz");
+            } else if (outPutNumber % 3 == 0) {
+                System.out.println("Fizz");
+            } else {
+                System.out.println(outPutNumber);
+            }
+            return false;
+        }
+
+    }
+
+    public static boolean isItString(String sentence) {
+        return "Fizz".equals(sentence) || "Buzz".equals(sentence) || "FizzBuzz".equals(sentence);
     }
 }
