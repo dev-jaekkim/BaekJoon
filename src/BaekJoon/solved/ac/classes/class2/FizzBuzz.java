@@ -34,20 +34,29 @@ public class FizzBuzz {
         // 길이가 4로 나눴을때 나머지가 0인 경우, 높은 확률로 문자임.
         // 아닌 경우도 존재함. 하지만 문자일 확률이 높음.
 
-        isItStringOrNumber(firstSentence, outPutNumber,3);
-        isItStringOrNumber(secondSentence, outPutNumber,2);
-        isItStringOrNumber(thirdSentence, outPutNumber,1);
+        if(isItStringOrNumber(firstSentence, outPutNumber, 3)){
+            if(isItStringOrNumber(secondSentence, outPutNumber, 2)) {
+                isItStringOrNumber(thirdSentence, outPutNumber, 1);
+            }
+        }
     }
 
-    public String isItStringOrNumber(String sentence, int outPutNumber ,int addNumber) {
-        if(isItString(sentence)){
-
+    public boolean isItStringOrNumber(String sentence, int outPutNumber ,int addNumber) {
+        if (isItString(sentence)) {
+            return true;
         } else {
             outPutNumber = Integer.parseInt(sentence) + addNumber;
-            System.out.println(outPutNumber);
+            if (outPutNumber % 15 == 0) {
+                System.out.println("FizzBuzz");
+            } else if (outPutNumber % 5 == 0) {
+                System.out.println("Buzz");
+            } else if (outPutNumber % 3 == 0) {
+                System.out.println("Fizz");
+            } else {
+                System.out.println(outPutNumber);
+            }
+            return false;
         }
-
-        return sentence;
     }
 
     public boolean isItString(String sentence) {
