@@ -18,6 +18,7 @@ import java.util.List;
 public class SortingNumbers {
 
     public void howShallISort() throws Exception {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int totalNumbers = Integer.parseInt(bf.readLine());
 
@@ -42,37 +43,73 @@ public class SortingNumbers {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int totalNumbers = Integer.parseInt(bf.readLine());
         int[] arrayToSort = new int[totalNumbers];
+        int[] countingSort = new int[10001];
+        int[] result = new int[totalNumbers];
 
         for(int i = 0 ; i < totalNumbers; i++) {
-            arrayToSort[i] = Integer.parseInt(bf.readLine());
+            int value = Integer.parseInt(bf.readLine());
+            arrayToSort[i] = value;
+            countingSort[value]++;
         }
+        // 배열과 counting 배열 모두 값을 넣음
+        // 10 5 2 3 1 4 2 3 5 1 7
+        // 0 1 2 3 4 5 6 7 8 9
 
-        // 배열에 다 들어옴
-        // 이중 for 문 필요 왜냐면 전부 다 비교해야함.
-
-        for(int i = 0 ; i < totalNumbers ; i ++) {
-            int temp = arrayToSort[i];
-            for (int j = 1 ; j < totalNumbers - 1 ; j++) {
-                if(arrayToSort[i] > arrayToSort[j]) {
-                    arrayToSort[i] = arrayToSort[j];
-                    arrayToSort[j] = temp;
-                    break;
-                }
+        for(int i = 0 ; i < 10001; i++) {
+            if(i != 10000){
+                countingSort[i+1] = countingSort[i+1] + countingSort[i];
             }
-
-            if(i == totalNumbers - 1) {
-                break;
-            }
+        }
+        // total Number 10
+        // 0 1 2 3 4 5 6 7 8 9
+        // 배열 넣기
+        for(int i = totalNumbers - 1 ; i >= 0 ; i--) {
+            int location = arrayToSort[i];
+            countingSort[location]--;
+            result[countingSort[location]] = location;
         }
 
         StringBuilder sb = new StringBuilder();
-        for(int a : arrayToSort) {
+        for(int a : result) {
             sb.append(a);
             sb.append(System.lineSeparator());
         }
         System.out.println(sb);
     }
 
+    public void blogSolution() throws Exception {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int totalNumbers = Integer.parseInt(bf.readLine());
+        int[] arrayToSort = new int[totalNumbers];
+        int[] countingSort = new int[10001];
+        int[] result = new int[totalNumbers];
 
+        // 정렬 값 counting 정렬 안에 넣어주기
+        for(int i = 0 ; i < totalNumbers; i++) {
+            int value = Integer.parseInt(bf.readLine());
+            arrayToSort[i] = value;
+            countingSort[arrayToSort[i]]++;
+        }
+
+        // counting 배열 누적합 구하기
+        for(int i = 1; i < countingSort.length; i++) {
+            countingSort[i] += countingSort[i-1];
+        }
+
+        // 최종 결과값 세팅
+        for(int i = result.length - 1 ; i >= 0 ; i--) {
+            int value = arrayToSort[i];
+            countingSort[value]--;
+            result[countingSort[value]] = value;
+        }
+
+        StringBuilder resultString = new StringBuilder();
+        for(int value : result) {
+            resultString.append(value);
+            resultString.append(System.lineSeparator());
+        }
+
+        System.out.println(resultString);
+    }
 
 }

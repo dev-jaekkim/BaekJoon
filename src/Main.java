@@ -8,35 +8,35 @@ public class Main {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int totalNumbers = Integer.parseInt(bf.readLine());
         int[] arrayToSort = new int[totalNumbers];
+        int[] countingSort = new int[10001];
+        int[] result = new int[totalNumbers];
 
-        for (int i = 0; i < totalNumbers; i++) {
-            arrayToSort[i] = Integer.parseInt(bf.readLine());
+        // 정렬 값 counting 정렬 안에 넣어주기
+        for(int i = 0 ; i < totalNumbers; i++) {
+            int value = Integer.parseInt(bf.readLine());
+            arrayToSort[i] = value;
+            countingSort[arrayToSort[i]]++;
         }
 
-        // 배열에 다 들어옴
-        // 이중 for 문 필요 왜냐면 전부 다 비교해야함.
-
-        for (int i = 0; i < totalNumbers; i++) {
-            int temp = arrayToSort[i];
-//            System.out.println("temp = " + temp);
-            for (int j = 0; j < totalNumbers; j++) {
-//                    System.out.println("j 이중 포문 들어옴 arrayToSort[i] = " + arrayToSort[i]);
-//                    System.out.println("j 이중 포문 들어옴 arrayToSort[j] = " + arrayToSort[j]);
-                if (arrayToSort[i] < arrayToSort[j]) {
-                    arrayToSort[i] = arrayToSort[j];
-                    arrayToSort[j] = temp;
-//                    System.out.println("순서 변환 후 : arrayToSort[i] = " + arrayToSort[i]);
-//                    System.out.println("순서 변환 후 : arrayToSort[j] = " + arrayToSort[j]);
-                }
-            }
+        // counting 배열 누적합 구하기
+        for(int i = 1; i < countingSort.length; i++) {
+            countingSort[i] += countingSort[i-1];
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (int a : arrayToSort) {
-            sb.append(a);
-            sb.append(System.lineSeparator());
+        // 최종 결과값 세팅
+        for(int i = result.length - 1 ; i >= 0 ; i--) {
+            int value = arrayToSort[i];
+            countingSort[value]--;
+            result[countingSort[value]] = value;
         }
-        System.out.println(sb);
+
+        StringBuilder resultString = new StringBuilder();
+        for(int value : result) {
+            resultString.append(value);
+            resultString.append(System.lineSeparator());
+        }
+
+        System.out.println(resultString);
 
     }
 }
